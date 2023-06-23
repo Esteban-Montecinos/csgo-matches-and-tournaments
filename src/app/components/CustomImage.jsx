@@ -2,11 +2,11 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-export default function CustomImage({ src, alt, w, h }) {
+export default function CustomImage({ src, alt, w, h, className }) {
   const [source, setSource] = useState(src);
   return (
     <Image
-      className="justify-self-center opacity-100"
+      className={className}
       unoptimized
       src={source ? source : "/placeholder.svg"}
       alt={alt}

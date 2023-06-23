@@ -1,14 +1,9 @@
 import CustomImage from "../components/CustomImage";
-import {DiasDesde} from "../components/DiasDesde";
+import { FormatFecha } from "../components/FormatFecha";
 const url =
-  "https://csgo-matches-and-tournaments.p.rapidapi.com/matches?page=1&limit=10";
+  "https://hltv-api.vercel.app/api/results.json";
 const options = {
-  method: "GET",
-  headers: {
-    "Content-Type": "application/json",
-    "X-RapidAPI-Key": process.env.RAPIDAPI_KEY,
-    "X-RapidAPI-Host": process.env.RAPIDAPI_HOST,
-  },
+  method: "GET"
 };
 
 const fetchPlayed = () => {
@@ -17,59 +12,57 @@ const fetchPlayed = () => {
 
 export default async function ListOfPlayed() {
   const played = await fetchPlayed();
-  return played.data.map((match) => (
+  return played.map((match) => (
     <article
-      key={match.id}
-      className="max-w-sm w-full h-90 min-h-full rounded shadow-lg text-center bg-neutral-100 opacity-90 p-5 grid content-between"
+      key={match.matchId}
+      className="max-w-sm h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-neutral-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50"
     >
-      <div className="grid grid-cols-3 gap-1 mb-2">
-        <p className="justify-self-center self-center text-xs">{match.event.title}</p>
-        <p className="justify-self-center self-center font-medium">{match.location}</p>
-        <p className="justify-self-center self-center">{"Hace "+ DiasDesde(match.played_at)+" días."}</p>
+      <div className="grid gap-1 mb-2">
+        <CustomImage
+            className={"justify-self-center "}
+            src={match.event.logo}
+            w={24}
+            h={24}
+            alt={match.event.name}
+          />
+        <p className="md:justify-self-center justify-self-center self-center text-xs ">{match.event.name}</p>
       </div>
-      <div className="grid grid-cols-3 gap-2 justify-center">
-        <div className="grid">
+      <div className="grid md:grid-cols-3 grid-cols-1 gap-2 justify-center">
+        <div className="grid grid-cols-1 gap-1">
           <CustomImage
-            src={match.team_won.image_url}
+            className={"justify-self-center "}
+            src={match.teams[0].logo}
             w={48}
             h={48}
-            alt={match.team_won.title}
+            alt={match.teams[0].name}
           />
-          <p className="font-bold text-md text-green-800">
-            {match.team_won.title}
+          <p className="font-bold text-md text-slate-200 justify-self-center">
+            {match.teams[0].name}
           </p>
         </div>
+        <div className="grid">
         <p className="self-center font-bold text-2xl">
-          {match.score_won + " - " + match.score_lose}
+          {match.teams[0].result + " - " + match.teams[1].result}
         </p>
-        <div className="grid">
+        <div>
+        <p className="justify-self-center self-center text-emerald-500 bg-neutral-600 rounded-full px-2 font-semibold">{match.maps}</p>
+        </div>
+        </div>
+        <div className="grid grid-cols-1 gap-1">
           <CustomImage
-            src={match.team_lose.image_url}
+            className={"justify-self-center"}
+            src={match.teams[1].logo}
             w={48}
             h={48}
-            alt={match.team_lose.title}
+            alt={match.teams[0].name}
           />
-          <p className="font-bold text-md text-red-800">
-            {match.team_lose.title}
+          <p className="font-bold text-md text-slate-200 justify-self-center">
+            {match.teams[0].name}
           </p>
         </div>
       </div>
-      <div>
-        <div className="grid grid-cols-3 gap-2">
-          <CustomImage
-            src={match.team_won_country.image_url}
-            w={24}
-            h={24}
-            alt={match.team_won_country.title}
-          />
-          <p className="justify-self-center self-center text-emerald-500 bg-neutral-600 rounded-full px-2 font-semibold">{match.match_kind.title}</p>
-          <CustomImage
-            src={match.team_lose_country.image_url}
-            w={24}
-            h={24}
-            alt={match.team_lose_country.title}
-          />
-        </div>
+      <div className="grid">
+        <p className="md:justify-self-end justify-self-center self-center text-xs">{ FormatFecha(match.time)}</p>
       </div>
       
     </article>

@@ -1,5 +1,6 @@
 export const FormatFecha = (fecha)=> {
     const nuevaFecha = new Date(fecha);
+    var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const format =
       nuevaFecha.getMonth() +
       1 +
@@ -8,5 +9,5 @@ export const FormatFecha = (fecha)=> {
       "-" +
       nuevaFecha.getFullYear();
     const fechaFormateada = new Date(format);
-    return fechaFormateada.toLocaleDateString("es-CL");
+    return fechaFormateada.toLocaleDateString("es-CL",options);
 }
