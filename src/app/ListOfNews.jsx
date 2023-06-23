@@ -33,7 +33,7 @@ export default async function ListOfNews() {
       href={news.link}
       target="_blank"
       key={news.link}
-      className="max-w-lg h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-slate-800 rounded-md hover:scale-105 duration-300"
+      className="max-w-xl h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-slate-800 rounded-md hover:scale-105 duration-300"
     >
       <div className="grid text-sm text-start text-gray-400 uppercase">
         {FormatFecha(news.time)}
