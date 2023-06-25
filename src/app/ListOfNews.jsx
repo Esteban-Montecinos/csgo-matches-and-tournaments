@@ -14,7 +14,6 @@ const optionsTranslate = {
 const url = "https://hltv-api.vercel.app/api/news.json";
 const options = {
   method: "GET",
-  cache: "no-store",
 };
 
 const fetchTranslate = (q) => {

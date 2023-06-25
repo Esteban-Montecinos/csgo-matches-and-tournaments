@@ -4,7 +4,6 @@ const url =
   "https://hltv-api.vercel.app/api/results.json";
 const options = {
   method: "GET",
-  cache: "no-store",
 };
 
 const fetchPlayed = () => {

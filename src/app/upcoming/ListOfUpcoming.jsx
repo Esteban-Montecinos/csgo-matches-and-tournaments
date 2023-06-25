@@ -5,7 +5,6 @@ const url =
   "https://hltv-api.vercel.app/api/matches.json";
 const options = {
   method: "GET",
-  cache: "no-store",
 };
 
 const fetchUpcoming = () => {
