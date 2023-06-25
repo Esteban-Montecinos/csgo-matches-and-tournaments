@@ -2,25 +2,11 @@ import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { FormatFecha } from "./components/FormatFecha";
 
-const optionsTranslate = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": process.env.RAPIDAPI_KEY,
-    "X-RapidAPI-Host": process.env.RAPIDAPI_HOST,
-  },
-};
-
 const url = "https://hltv-api.vercel.app/api/news.json";
 const options = {
   method: "GET",
 };
 
-const fetchTranslate = (q) => {
-  return fetch(
-    `https://translated-mymemory---translation-memory.p.rapidapi.com/get?langpair=en%7Ces&q=${q}!&mt=1&onlyprivate=0&de=a%40b.c`,
-    optionsTranslate
-  ).then((data) => data.json());
-};
 const fetchNews = () => {
   return fetch(url, options).then((data) => data.json());
 };
@@ -37,15 +23,11 @@ export default async function ListOfNews() {
       </div>
       <div className="grid md:text-2xl text-lg font-bold text-start">
         <h2>
-          {fetchTranslate(news.title).then(
-            (data) => data.matches[0].translation
-          )}
+          {news.title}
         </h2>
       </div>
       <div className="grid md:text-xl text-sm font-semibold text-start text-gray-400">
-        {fetchTranslate(news.description).then(
-          (data) => data.matches[0].translation
-        )}
+        {news.description}
       </div>
       <div className="flex gap-1 justify-items-start hover:text-blue-500 ">
         
