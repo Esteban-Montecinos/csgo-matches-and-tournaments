@@ -55,10 +55,10 @@ export default async function ListOfPlayed() {
             src={match.teams[1].logo}
             w={48}
             h={48}
-            alt={match.teams[0].name}
+            alt={match.teams[1].name}
           />
           <p className="font-bold text-md text-slate-200 justify-self-center">
-            {match.teams[0].name}
+            {match.teams[1].name}
           </p>
         </div>
       </div>

@@ -4,9 +4,9 @@ const nextConfig = {
         remotePatterns: [
           {
             protocol: 'https',
-            hostname: 'storage.web7.pro',
+            hostname: 'https://img-cdn.hltv.org',
             port: '',
-            pathname: '/csgobot/team/**',
+            pathname: '/**',
           },
         ],
       },
