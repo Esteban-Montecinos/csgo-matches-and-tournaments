@@ -5,6 +5,7 @@ const url =
   "https://hltv-api.vercel.app/api/matches.json";
 const options = {
   method: "GET",
+  cache: "no-store",
 };
 
 const fetchUpcoming = () => {
@@ -13,7 +14,7 @@ const fetchUpcoming = () => {
 
 export default async function ListOfUpcoming() {
   const upcoming = await fetchUpcoming();
-  return upcoming.map((match) => (
+  return upcoming && upcoming.map((match) => (
     <article
       key={match.id}
       className="max-w-sm h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-neutral-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50"

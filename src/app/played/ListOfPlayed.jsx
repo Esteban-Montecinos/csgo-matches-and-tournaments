@@ -3,7 +3,8 @@ import { FormatFecha } from "../components/FormatFecha";
 const url =
   "https://hltv-api.vercel.app/api/results.json";
 const options = {
-  method: "GET"
+  method: "GET",
+  cache: "no-store",
 };
 
 const fetchPlayed = () => {
@@ -12,7 +13,7 @@ const fetchPlayed = () => {
 
 export default async function ListOfPlayed() {
   const played = await fetchPlayed();
-  return played.map((match) => (
+  return played && played.map((match) => (
     <article
       key={match.matchId}
       className="max-w-sm h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-neutral-800 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-50"

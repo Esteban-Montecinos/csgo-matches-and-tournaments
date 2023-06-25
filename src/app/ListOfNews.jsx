@@ -8,11 +8,13 @@ const optionsTranslate = {
     "X-RapidAPI-Key": process.env.RAPIDAPI_KEY,
     "X-RapidAPI-Host": process.env.RAPIDAPI_HOST,
   },
+  cache: "no-store",
 };
 
 const url = "https://hltv-api.vercel.app/api/news.json";
 const options = {
   method: "GET",
+  cache: "no-store",
 };
 
 const fetchTranslate = (q) => {
@@ -27,10 +29,8 @@ const fetchNews = () => {
 
 export default async function ListOfNews() {
   const newness = await fetchNews();
-  return newness.map((news) => (
-    <Link
-      href={news.link}
-      target="_blank"
+  return newness && newness.map((news) => (
+    <article
       key={news.link}
       className="max-w-xl h-90 min-h-fullshadow-lg text-center text-white p-5 grid h-full w-full bg-slate-800 rounded-md hover:scale-105 duration-300"
     >
@@ -60,6 +60,6 @@ export default async function ListOfNews() {
           </Link>
         <AiOutlineArrowRight className="self-center"/>
       </div>
-    </Link>
+    </article>
   ));
 }
